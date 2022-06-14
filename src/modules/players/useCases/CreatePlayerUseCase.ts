@@ -5,8 +5,9 @@ import IPlayersRepository from '../repositories/IPlayersRepository';
 
 interface IRequest {
   name: string;
-  birthday:Date;
-  state:string;
+  position:string;
+  wheight:number;
+  height:number;
 
 }
 
@@ -17,9 +18,10 @@ export default class CreatePlayerUseCase {
     @inject('PlayerRepository') private playerRepository: IPlayersRepository,
   ) {}
 
-  public async execute({ name,birthday,state }: IRequest): Promise<any> {
-    this.logger.log('info', 'creating team', { name,birthday,state});
-    const response = await this.playerRepository.create({ name,birthday,state});
+  public async execute({height,position,wheight,name }: IRequest): Promise<any> {
+    this.logger.log('info', 'creating team', { name,wheight,height,position});
+    const response = await this.playerRepository.create({name,wheight,position
+    ,height });
     this.logger.log('info', 'created team', { response });
     return response;
   }

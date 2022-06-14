@@ -1,21 +1,24 @@
 import mongoose, { Document, Model, Schema } from 'mongoose';
 export type PlayerAttributes = {
   _id?: string;
-  name: string;
-  birthday:Date;
-  state:string;
+  position:string;
+  wheight:number;
+  height:number;
+  name:string;
+
 };
 
 export type PlayerDocument = Document & PlayerAttributes;
 
-type TeamModel = Model<PlayerDocument>;
+type PlayModel = Model<PlayerDocument>;
 
 const PlayerSchema = new Schema(
   {
 
     name: { type: String, required: true },
-    state: { type: String, required: true },
-    birthday: { type: Date, required: true },
+    wheight: { type: Number, required: true },
+    height: { type: Number, required: true },
+    position:{type:String,required:true}
 
 
   },
@@ -26,7 +29,7 @@ const PlayerSchema = new Schema(
   },
 );
 
-const PlayerMongoose = mongoose.model<PlayerDocument, TeamModel>(
+const PlayerMongoose = mongoose.model<PlayerDocument, PlayModel>(
   'Player',
   PlayerSchema,
 );

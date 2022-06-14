@@ -9,7 +9,7 @@ import teamFactory from '@modules/players/factories/teamFactory';
 
 
 const tf = teamFactory();
-describe('team.create',()=>{
+describe('team.list',()=>{
   beforeAll(async()=>{
     await MongoDBMock.connect();
     await TeamMongoose.deleteMany({})
@@ -21,12 +21,13 @@ describe('team.create',()=>{
   beforeEach(async()=>{
     await TeamMongoose.deleteMany({})
   })
-  it('should create players',async()=>{
-    const createRequest = await request(app).post('/api/v1/teams')
+  it('should list teams',async()=>{
+    await TeamMongoose.create(tf);
+    const listRequest = await request(app).get('/api/v1/teams')
     .send(tf)
-    const listAdded = await TeamMongoose.find()
-    expect(createRequest.status).toBe(201)
-    expect(listAdded.length).toBe(1)
-    expect(listAdded[0].name).toBe(tf.name)
+
+    expect(listRequest.status).toBe(200)
+    expect(listRequest.body[0].name).toBe(tf.name)
+
   })
 })

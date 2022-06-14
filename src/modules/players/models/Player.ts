@@ -1,7 +1,9 @@
 type Player = {
   _id?: string;
-  name: string;
-  birthday:Date;
-  state:string;
+
+  height:number;
+  wheight:number;
+  position:string;
+  name:string;
 
 };

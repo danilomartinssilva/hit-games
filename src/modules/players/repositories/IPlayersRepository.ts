@@ -1,7 +1,8 @@
 export type PlayerRequest = {
   name: string;
-  birthday:Date;
-  state:string;
+  position:string;
+  height:number;
+  wheight:number;
 };
 
 

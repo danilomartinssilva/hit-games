@@ -6,11 +6,12 @@ export default class PlayersController {
 
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const {birthday,name,state} = request.body;
+    const {name,wheight,height,position} = request.body;
 
     const createPlayerUseCase = container.resolve(CreatePlayerUseCase);
     await createPlayerUseCase.execute({
-      birthday,name,state
+      name,wheight,height,position
+
     });
     return response.status(201).send();
   }
