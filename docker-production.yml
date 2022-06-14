@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+
+
+
+  back_hit:
+    build: .
+    ports:
+      - ${PORT}:${PORT}
+    networks:
+      - app-tier
+  swagger_hint:
+  image: swaggerapi/swagger-ui
+  ports:
+    - "80:8080"
+  volumes:
+    - ./src:/usr/share/nginx/html/doc
+  environment:
+    API_URL: doc/swagger.json
+networks:
+  app-tier:
+    driver: bridge
+
+
+

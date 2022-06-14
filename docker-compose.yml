@@ -1,0 +1,34 @@
+version: '3.1'
+
+services:
+
+  mongo_hit:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+      MONGO_INITDB_DATABASE: test
+    ports:
+      - ${MONGODB_PORT}:27017
+    volumes:
+      - ~/data:/data/db
+    networks:
+      - app-tier
+  redis_hit:
+    image: 'redis'
+    restart: "always"
+    ports:
+      - 6379:6379
+    networks:
+      - app-tier
+    volumes:
+      - ~/data-redis:/bitname/redis/data
+
+
+networks:
+  app-tier:
+    driver: bridge
+
+
+
