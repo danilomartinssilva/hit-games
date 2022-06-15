@@ -13,6 +13,9 @@ export default class MongoosePlayerRepository implements IPlayersRepository {
     }
     return response;
   }
+  async findAll():Promise<Player[]>{
+    return await PlayerMongoose.find({});
+  }
 
 
 }
