@@ -15,7 +15,6 @@ Para contribuir após clonado o repositório
 - Typescript
 - MongoDB
 - Docker
-- Redis
 - Jest
 - Mongoose
 - Chance
