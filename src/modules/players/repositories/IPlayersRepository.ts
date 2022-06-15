@@ -8,8 +8,12 @@ export type PlayerRequest = {
 
 
 
+
+
 export default interface IPlayersRepository {
 
   create(player: PlayerRequest): Promise<boolean>;
+
+  findAll():Promise<Player[]>
 
 }

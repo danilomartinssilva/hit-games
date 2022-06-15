@@ -2,7 +2,7 @@
   "openapi":"3.0.0",
   "info":{
      "title":"Teste Backend - HIT Games",
-     "description":"Atividade técnica para a vaga de backend na empresa TUI",
+     "description":"Atividade técnica para a vaga de backend na empresa HIT GAMES",
      "contact":{
         "email":"danilomartins.pacs@gmail.com"
      }
@@ -52,6 +52,52 @@
            "responses":{
               "201":{
                  "description":""
+              }
+           }
+        },
+        "put":{
+           "summary":"Vinculação de Jogador a um Time",
+           "description":"Vincular Jogador",
+           "tags":[
+              "Times"
+           ],
+           "requestBody":{
+              "required":true,
+              "content":{
+                 "application/json":{
+                    "schema":{
+                       "type":"object",
+                       "properties":{
+                                  "teamId":{
+                                    "type":"string",
+                                    "example":"62a8cc7d1c79761724832e6c"
+                                  },
+                                  "ids":{
+                                    "type":"array",
+                                    "items":{
+                                      "type":"string"
+                                    }
+                                }
+
+                       }
+                    }
+                 }
+              }
+           },
+           "responses":{
+              "201":{
+                 "description":"A object of Team",
+                 "content":{
+                   "application/json":{
+                     "schema":{
+                      "type":"object",
+                      "$ref":"#/components/schemas/Teams"
+                     }
+                   }
+                 }
+              },
+              "404":{
+                 "description":"Team ID not found"
               }
            }
         },
