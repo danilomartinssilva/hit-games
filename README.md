@@ -1,16 +1,16 @@
-# TUI-BACKEND
-Atividade desenvolvida como teste para empresa TUI.
+# HIT-GAMES
+Atividade desenvolvida como teste para empresa HIT-GAMES.
 
 # Guia de início
-## Obter repositório 
-```git clone https://github.com/danilomartinssilva/tui-backend.git ```
+## Obter repositório
+```git clone https://github.com/danilomartinssilva/hit-games.git ```
 ## Instalação
 Para contribuir após clonado o repositório
 ``` docker-compose up -d ```
 ## Acesso
-- Acessar documentação: [TUI-BACKEND](http://164.92.209.125/) 
+- Acessar documentação: [HITGAMES-BACKEND](http://164.92.209.125/)
 - No Swagger selecionar o servidor de produção
-- Acessar api: [TUI-BACKEND](http://164.92.209.125/api/v1)
+- Acessar api: [HITGAMES-BACKEND](http://164.92.209.125/api/v1)
 ## Ferramentas utilizdas
 - Typescript
 - MongoDB
@@ -23,4 +23,4 @@ Para contribuir após clonado o repositório
 - Reflect-metada
 - Pino
 - Logger
-- OpenTelemetery + NewRelic(Ainda em testes)
+
