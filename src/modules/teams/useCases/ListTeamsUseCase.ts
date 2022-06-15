@@ -2,10 +2,6 @@ import ILogger from '@shared/infra/logger/interfaces/ILogger';
 import { inject, injectable } from 'tsyringe';
 import ITeamsRepository from '../repositories/ITeamsRepository';
 
-
-
-
-
 @injectable()
 export default class ListTeamsUseCase {
   constructor(

@@ -24,10 +24,27 @@ describe('team.list',()=>{
   it('should list teams',async()=>{
     await TeamMongoose.create(tf);
     const listRequest = await request(app).get('/api/v1/teams')
-    .send(tf)
+
 
     expect(listRequest.status).toBe(200)
     expect(listRequest.body[0].name).toBe(tf.name)
 
   })
+  it('should findById',async()=>{
+    const createdTeam =  await TeamMongoose.create(tf);
+    const listRequest = await request(app).get('/api/v1/teams/'+createdTeam._id)
+
+    expect(listRequest.status).toBe(200)
+    expect(listRequest.body.name).toBe(tf.name)
+
+  })
+  it('should return 404 when not search team',async()=>{
+    const createdTeam =  await TeamMongoose.create(tf);
+    const listRequest = await request(app).get('/api/v1/teams/62a8ca2afc15f3642608b388')
+
+    expect(listRequest.status).toBe(404)
+
+
+  })
+
 })
