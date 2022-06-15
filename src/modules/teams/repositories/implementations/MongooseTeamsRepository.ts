@@ -17,10 +17,10 @@ export default class MongooseTeamsRepository implements ITeamsRepository {
   }
 
   async list ():Promise<Team[]>{
-    return await TeamMongoose.find({}).populate({path:"players"});
+    return await TeamMongoose.find()
   }
   async findById (id:string):Promise<Team|null>{
-    return await TeamMongoose.findById(id).populate();
+    return await TeamMongoose.findById(id).populate({path:"players"});
   }
 
   async vinculate(ids:string[],teamId:string):Promise<Team | null>{

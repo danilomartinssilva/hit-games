@@ -1,7 +1,7 @@
 {
   "openapi":"3.0.0",
   "info":{
-     "title":"Teste Backend - TUI",
+     "title":"Teste Backend - HIT Games",
      "description":"Atividade técnica para a vaga de backend na empresa TUI",
      "contact":{
         "email":"danilomartins.pacs@gmail.com"
@@ -9,21 +9,21 @@
   },
   "servers":[
      {
-        "url":"http://localhost:8092/api/v1/",
+        "url":"http://192.168.3.15:8093/api/v1/",
         "description":"API local"
      },
      {
-        "url":"http://164.92.209.125:8092/api/v1/",
+        "url":"http://164.92.209.125:8093/api/v1/",
         "description":"API Prod"
      }
   ],
   "paths":{
-     "/address":{
+     "/teams":{
         "post":{
-           "summary":"Criação de Endereço",
-           "description":"Criação de um novo endereço",
+           "summary":"Criação de Time",
+           "description":"Criação de um novo time",
            "tags":[
-              "Address"
+              "Times"
            ],
            "requestBody":{
               "required":true,
@@ -32,30 +32,18 @@
                     "schema":{
                        "type":"object",
                        "properties":{
-                          "address":{
-                             "type":"array",
-                             "items":{
-                                "type":"object",
-                                "properties":{
-                                   "cityName":{
-                                      "type":"string",
-                                      "example":"MANCHESTER"
-                                   },
-                                   "cityCode":{
-                                      "type":"string",
-                                      "example":"MCH"
-                                   },
-                                   "countryName":{
-                                      "type":"string",
-                                      "example":"UNITED KINGDON"
-                                   },
-                                   "regionCode":{
-                                      "type":"string",
-                                      "example":"EUROP"
-                                   }
-                                }
-                             }
-                          }
+                                  "name":{
+                                    "type":"string",
+                                    "example":"SÃO PAULO F.C"
+                                  },
+                                  "state":{
+                                    "type":"string",
+                                    "example":"SP"
+                                  },
+                                  "birthday":{
+                                    "type":"string",
+                                    "example":"1937-09-01"
+                                  }
                        }
                     }
                  }
@@ -68,20 +56,20 @@
            }
         },
         "get":{
-           "summary":"Listagem de Hoteis",
-           "description":"Listagem de hoteis sem filtro",
+           "summary":"Listagem Times",
+           "description":"Listagem de times sem filtros",
            "tags":[
-              "Address"
+              "Times"
            ],
            "responses":{
               "200":{
-                 "description":"A JSON array of address",
+                 "description":"A JSON array of teams",
                  "content":{
                     "application/json":{
                        "schema":{
                           "type":"array",
                           "items":{
-                             "$ref":"#/components/schemas/Address"
+                             "$ref":"#/components/schemas/Teams"
                           }
                        }
                     }
@@ -90,44 +78,13 @@
            }
         }
      },
-     "/address/search?term={term}":{
+
+     "/teams/{id}":{
         "get":{
            "tags":[
-              "Address"
+              "Times"
            ],
-           "summary":"Search Address by query",
-           "description":"Any term that do you typing will have aggreate to result",
-           "parameters":[
-              {
-                 "name":"term",
-                 "in":"query",
-                 "type":"string",
-                 "example":"LIVERPOOL"
-              }
-           ],
-           "responses":{
-              "200":{
-                 "description":"Listagem de hoteis",
-                 "content":{
-                    "application/json":{
-                       "schema":{
-                          "type":"array",
-                          "items":{
-                             "$ref":"#/components/schemas/Address"
-                          }
-                       }
-                    }
-                 }
-              }
-           }
-        }
-     },
-     "/address/{id}":{
-        "get":{
-           "tags":[
-              "Address"
-           ],
-           "summary":"Search Address by id",
+           "summary":"FindById Team",
            "description":"Any term that do you typing will have aggreate to result",
            "parameters":[
               {
@@ -139,18 +96,18 @@
            ],
            "responses":{
               "200":{
-                 "description":"Listagem de hoteis",
+                 "description":"Retorna um time",
                  "content":{
                     "application/json":{
                        "schema":{
                           "type":"object",
-                          "$ref":"#/components/schemas/Address"
+                          "$ref":"#/components/schemas/Teams"
                        }
                     }
                  }
               },
               "404":{
-                 "description":"Address not found",
+                 "description":"Team not found",
                  "content":{
                     "application/json":{
                        "schema":{
@@ -174,12 +131,12 @@
            }
         }
      },
-     "/hotel":{
+     "/players":{
       "post":{
-         "summary":"Criação de um Hotel",
-         "description":"Criação de um novo hotel",
+         "summary":"Criação de um jogador",
+         "description":"Criação de um novo jogador",
          "tags":[
-            "Hotel"
+            "Jogadores"
          ],
          "requestBody":{
             "required":true,
@@ -188,30 +145,24 @@
                   "schema":{
                      "type":"object",
                      "properties":{
-                        "address_id":{
-                          "type":"string",
-                          "example":"f93f80ab-349a-4ecd-8bea-757b6957d2c6"
-                        },
-                        "hotel":{
-                           "type":"array",
-                           "items":{
-                              "type":"object",
-                              "properties":{
-                                 "chainCode":{
-                                    "type":"string",
-                                    "example":"HX"
-                                 },
-                                 "iataCode":{
-                                    "type":"string",
-                                    "example":"LPL"
-                                 },
+
                                  "name":{
                                     "type":"string",
-                                    "example":"PREMIER INN LIVERPOOL AIRPORT"
-                                 }
-                              }
-                           }
-                        }
+                                    "example":"Jonathan Calleri"
+                                 },
+                                 "position":{
+                                    "type":"string",
+                                    "example":"meio-de-campo"
+                                 },
+                                 "height":{
+                                    "type":"number",
+                                    "example":1.70
+                                 },
+                                 "wheight":{
+                                  "type":"number",
+                                  "example":90
+                               }
+
                      }
                   }
                }
@@ -220,132 +171,29 @@
          "responses":{
             "201":{
                "description":""
-            },
-            "404":{
-               "description":"Address not found"
             }
          }
       }
 
-   },
-     "/offers":{
-      "post":{
-         "summary":"Criação de uma oferta vinculada a um hotel",
-         "description":"Criação de uma nova oferta",
-         "tags":[
-            "Ofertas"
-         ],
-         "requestBody":{
-            "required":true,
-            "content":{
-               "application/json":{
-                  "schema":{
-                     "type":"object",
-                     "properties":{
-                        "hotel_id":{
-                          "type":"string",
-                          "example":"629f9858b99fb9e9e5737017"
-                        },
-                        "offers":{
-                           "type":"array",
-                           "items":{
-                              "type":"object",
-                              "properties":{
-                                 "checkInDate":{
-                                    "type":"string",
-                                    "example":"2022-11-22"
-                                 },
-                                 "checkOutDate":{
-                                    "type":"string",
-                                    "example":"2022-11-24"
-                                 },
-                                 "price":{
-                                    "type":"number",
-                                    "example":240
-                                 },
-                                 "available":{
-                                    "type":"boolean",
-                                    "example":true
-                                 }
-                              }
-                           }
-                        }
-                     }
-                  }
-               }
-            }
-         },
-         "responses":{
-            "201":{
-               "description":"Offer created"
-            },
-            "404":{
-               "description":"Hotel not found"
-            }
-         }
-      }
-
-   },
-     "/hotel/{id}":{
-
-      "get":{
-         "summary":"Listagem de Hoteis",
-         "description":"Listagem de hoteis sem filtro",
-         "tags":[
-            "Hotel"
-         ],
-         "parameters":[
-          {
-             "name":"id",
-             "in":"path",
-             "type":"string",
-             "example":"629f9858b99fb9e9e5737017"
-          }
-       ],
-         "responses":{
-            "200":{
-               "description":"A Json object Hotel",
-               "content":{
-                  "application/json":{
-                     "schema":{
-                        "type":"object",
-                         "$ref":"#/components/schemas/Hotel"
-                     }
-                  }
-               }
-            },
-            "404":{
-               "description":"Hotel not found",
-               "content":{
-                "application/json":{
-                  "schema":{
-                     "type":"object",
-                      "$ref":"#/components/schemas/AppError"
-
-                  }
-               }
-               }
-
-            }
-         }
-      }
    }
+
+
   },
   "components":{
      "schemas":{
-        "Address":{
+        "Teams":{
            "type":"object",
            "properties":{
               "_id":{
                  "type":"string"
               },
-              "cityName":{
+              "name":{
                  "type":"string"
               },
-              "cityCode":{
+              "birthday":{
                  "type":"string"
               },
-              "countryName":{
+              "state":{
                  "type":"string"
               },
               "createdAt":{
@@ -357,7 +205,7 @@
               "_v":{
                  "type":"number"
               },
-              "hotels":{
+              "players":{
                  "type":"array",
                  "items":{
                     "type":"string"
@@ -365,20 +213,23 @@
               }
            }
         },
-        "Hotel":{
+        "Player":{
            "type":"object",
            "properties":{
               "_id":{
                  "type":"string"
               },
-              "chainCode":{
-                 "type":"string"
-              },
-              "iataCode":{
-                 "type":"string"
-              },
               "name":{
                  "type":"string"
+              },
+              "position":{
+                 "type":"string"
+              },
+              "weight":{
+                 "type":"number"
+              },
+              "height":{
+                 "type":"number"
               },
 
               "createdAt":{
@@ -389,13 +240,8 @@
               },
               "_v":{
                  "type":"number"
-              },
-              "offers":{
-                 "type":"array",
-                 "items":{
-                    "type":"string"
-                 }
               }
+
            }
         },
         "AppError":{
